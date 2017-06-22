@@ -1,11 +1,14 @@
 var express=require('express');
 var app=express();
-
 var util=require('util');
-var mongo=require('mongodb');//.MongoClient;
+var mongo=require('mongodb');
 var MongoClient=mongo.MongoClient;
 var url="mongodb://localhost:27017/mydb";
 
+
+/**
+* Loads all contact data based on http get request on /
+**/
 app.get('/', function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -21,27 +24,74 @@ app.get('/', function (req, res) {
   });
 });
 
+/**
+* Delete one record based on id sent by http get request on /delete
+**/
 app.get('/delete', function(req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   console.log('Trying delete branch');
   console.log(req.query.id);
-  res.send('oh yeah');
+  
+  MongoClient.connect(url, function(err,db) {
+    if (err) throw err;
+    console.log("Database connected");
+	
+	var o_id=new mongo.ObjectID(req.query.id);
+	var myquery= { "_id" : o_id };
+	db.collection("contacts").deleteOne(myquery, function (err, obj) {
+	  if (err) throw err;
+	  console.log(req.query.id + " deleted");
+	  db.close();
+	});
+	  res.send("OK");
+	});
 });
 
-app.delete('/', function (req,res) {
+/**
+* Saves new record in mongo db based on http get request on /save
+**/
+app.get('/save', function(req,res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  console.log('Trying save branch');
+  console.log(req.query.name);
   
-  console.log('Trying to delete ');
+  MongoClient.connect(url, function(err,db) {
+    if (err) throw err;
+    console.log("Database connected");
+	
+	db.collection("contacts").insertOne(req.query, function (err, obj) {
+	  if (err) throw err;
+	  console.log(req.query + " saved");
+	  db.close();
+	});
+	  res.send("Saved");  
+	});
 });
 
-app.post('/', function (req,res) {
+
+/**
+* Saves changes made to the record based on http get request on /edit
+**/
+app.get('/edit', function(req,res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.sendStatus(200);
+  console.log('Trying edit branch');
+  console.log(req.query.id);
   
-  console.log('Trying to post ');
+  MongoClient.connect(url, function(err,db) {
+    if (err) throw err;
+    console.log("Database connected");
+	var o_id=new mongo.ObjectID(req.query.id);
+	var myquery= { "_id" : o_id };
+	db.collection("contacts").updateOne(myquery, req.query, function (err, obj) {
+	  if (err) throw err;
+	  console.log(req.query + " edited");
+	  db.close();
+	});
+	  res.send("Edited");
+	});
 });
 
 app.listen(8080, function() {

@@ -20,7 +20,7 @@
 <body>
 
 <div ng-app="myApp" ng-controller="myCtrl" class="container"> 
-<h1>Contacts</h1>
+<h1>Contacts:</h1>
 <table class="table">
 	<thead class="thead-default">
 	  <tr>
@@ -29,6 +29,7 @@
 		<th>Email</th>
 		<th>Phone</th>
 		<th>Address</th>
+		<th>Edit</th>
 		<th>Delete</th>
 	  </tr>
 	</thead>
@@ -39,22 +40,48 @@
 		<td>{{x.email}}</td>
 		<td>{{x.phone}}</td>
 		<td>{{x.address}}</td>
-		<td><button type="button" id="{{x._id}}" class="btn btn-danger" ng-click="deleteRecord('{{x._id}}')">Delete</button></td>
+		<td><button type="button" id="{{x._id}}" data='{{x}}' class="btn btn-primary" ng-click="editPrepare($event)">Edit</button></td>
+		<td><button type="button" id="{{x._id}}" class="btn btn-danger" ng-click="deleteRecord($event)">Delete</button></td>
 	  </tr>
 	</tbody>
 </table>
 
-
-
-<!--<p>Today's welcome message is:</p>
-
-<h1>{{myWelcome}}</h1>
-
-<p>The $http service requests a page on the server, and the response is set as the value of the "myWelcome" variable.</p>-->
+<form>
+<h3>{{editInsert}}</h3>
+	<div class='form-group row'>
+		<label for='name' class='col-2 col-form-label'>Name</label>
+		<div class='col-10'>
+			<input class='form-control' type='text' placeholder='name' name='name' id='name' ng-model='name' autofocus>
+		</div>
+	</div>
+	<div class='form-group row'>
+		<label for='surname' class='col-2 col-form-label'>Surname</label>
+		<div class='col-10'>
+			<input class='form-control' type='text' placeholder='surname' name='surname' id='surname' ng-model='surname'>
+		</div>
+	</div>
+	<div class='form-group row'>
+		<label for='email' class='col-2 col-form-label'>Email</label>
+		<div class='col-10'>
+			<input class='form-control' type='text' placeholder='email' name='email' id='email' ng-model='email'>
+		</div>
+	</div>
+	<div class='form-group row'>
+		<label for='phone' class='col-2 col-form-label'>Phone</label>
+		<div class='col-10'>
+			<input class='form-control' type='text' placeholder='phone' name='phone' id='phone' ng-model='phone'>
+		</div>
+	</div>
+	<div class='form-group row'>
+		<label for='address' class='col-2 col-form-label'>Address</label>
+		<div class='col-10'>
+			<input class='form-control' type='text' placeholder='address' name='address' id='address' ng-model='address'>
+		</div>
+	</div>
+	<button type='submit' class='btn btn-primary' ng-click='saveRecord()'>Save</button>
+</form>
 </div>
-
-
-
+	<!-- Angular controller-->
 	<script src='controller.js'></script>
 	
 	<!-- Bootstrap core JavaScript
