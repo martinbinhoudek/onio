@@ -14,7 +14,7 @@ Celkove mam z tech technologii pocit, ze i kdyz maji jak silne tak slabe stranky
 
 At uz budu kdekoliv, svuj pristi projekt hodlam stavet prave na tomhle. Poprosim Vas kazdopadne o zpetnou vazbu. Prece jen jsem se mohl obracet jen na google a nevim, jestli je muj pristup spravny.
 
-A jeste posledni poznamka - popisky jsou v anglictine, ale to byla spis otazka zvyku.
+A jeste posledni poznamka - popisky jsou v anglictine, ale to byla spis otazka zvyku. Nazvy souboru jsou samovysvetlujici.
 
 S pozdravem,
 Martin Houdek
