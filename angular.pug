@@ -1,0 +1,77 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    meta(name="description" content="Onio Project")
+    meta(name="author" content="Martin Houdek")
+    link(rel="icon" href="../../favicon.ico")
+    title Onio Project
+    //Bootstrap core CSS
+    link(href="./assets/css/bootstrap.min.css" rel="stylesheet")
+    //Custom styles for this template
+    link(href="./assets/css/dashboard.css" rel="stylesheet")
+    //Angular core
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js")
+  body
+    div.container(ng-app="myApp" ng-controller="myCtrl")
+      h1 Contacts
+      table.table
+        thead.thead-default
+          tr
+            th Name
+            th Surname
+            th Email
+            th Phone
+            th Address
+            th Edit
+            th Delete
+        tbody
+          tr(ng-repeat="x in contacts")
+            td {{x.name}}
+            td {{x.surname}}
+            td {{x.email}}
+            td {{x.phone}}
+            td {{x.address}}
+            td
+              button(type="button" id="{{x._id}}" data='{{x}}' class="btn btn-primary" ng-click="editPrepare($event)") Edit
+            td
+              button(type="button" id="{{x._id}}" class="btn btn-danger" ng-click="deleteRecord($event)") Delete
+
+      form
+        h3 {{editInsert}}
+        div.form-group.row
+          label.col-2.col-form-label(for='name') Name
+          div.col-10
+            input.form-control(type='text' placeholder='name' name='name' id='name' ng-model='name' autofocus)
+        div.form-group.row
+          label.col-2.col-form-label(for='surname') Surname
+          div.col-10
+            input.form-control(type='text' placeholder='surname' name='surname' id='surname' ng-model='surname')
+        div.form-group.row
+          label.col-2.col-form-label(for='email') Email
+          div.col-10
+            input.form-control(type='text' placeholder='email' name='email' id='email' ng-model='email')
+        div.form-group.row
+          label.col-2.col-form-label(for='phone') Phone
+          div.col-10
+            input.form-control(type='text' placeholder='phone' name='phone' id='phone' ng-model='phone')
+        div.form-group.row
+          label.col-2.col-form-label(for='address') Address
+          div.col-10
+            input.form-control(type='text' placeholder='address' name='address' id='address' ng-model='address')
+        button.btn.btn-primary(type='submit' ng-click='saveRecord()') Save
+
+    //Angular controller-->
+    script(src='controller.js')
+
+    //Bootstrap core JavaScript
+    //==================================================
+    //Placed at the end of the document so the pages load faster
+    script(src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous")
+    script
+      window.jQuery || document.write('<script src="./assets/js/vendor/jquery.min.js"><\/script>')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous")
+    script(src="./assets/js/bootstrap.min.js")
+    //IE10 viewport hack for Surface/desktop Windows 8 bug
+    script(src="./assets/js/ie10-viewport-bug-workaround.js")
