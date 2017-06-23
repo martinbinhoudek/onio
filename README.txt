@@ -18,3 +18,6 @@ A jeste posledni poznamka - popisky jsou v anglictine, ale to byla spis otazka z
 
 S pozdravem,
 Martin Houdek
+
+Edit 23.6.2017 12:33
+Dnes jsem nasel volnou chvilku a vlitl na pug :) Velice jednoducha a krasna zalezitost. Ted vidim, kolik prace jsem si mohl usetrit :)
