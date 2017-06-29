@@ -1,0 +1,24 @@
+{
+  "name": "onio",
+  "version": "1.0.0",
+  "description": "Sample Onio project",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongodb": "^2.2.29"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinbinhoudek/onio.git"
+  },
+  "author": "Ing. Martin Houdek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martinbinhoudek/onio/issues"
+  },
+  "homepage": "https://github.com/martinbinhoudek/onio#readme"
+}
