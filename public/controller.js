@@ -16,8 +16,9 @@ app.controller('myCtrl', function($scope, $http, $window) {
   **/
   $scope.deleteRecord=function(event) {  
     $http({
-	  method: 'GET',
-	  url: 'http://ubuntu:8080/delete?id='+event.target.id
+	  method: 'DELETE',
+	  url: 'http://ubuntu:8080/?id='+event.target.id
+	  //data: {id:event.target.id}
     });
     $window.location.reload();
   };
@@ -37,8 +38,8 @@ app.controller('myCtrl', function($scope, $http, $window) {
     }
     else {
       $http({
-	  method: 'GET',
-      url: 'http://ubuntu:8080/edit?id='+$scope.editId+'&name='+$scope.name+'&surname='+$scope.surname+'&email='+$scope.email+'&phone='+$scope.phone+'&address='+$scope.address
+	  method: 'PUT',
+      url: 'http://ubuntu:8080/?id='+$scope.editId+'&name='+$scope.name+'&surname='+$scope.surname+'&email='+$scope.email+'&phone='+$scope.phone+'&address='+$scope.address
       });
     }
     $window.location.reload();

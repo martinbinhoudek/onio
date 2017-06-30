@@ -12,8 +12,6 @@ app.use(express.static('public'));
 * Loads all contact data based on http get request on /
 **/
 app.get('/data', function (req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   db.collection("contacts").find().toArray(function (err, result) {
     if (err) throw err;
     res.send(result);
@@ -21,11 +19,9 @@ app.get('/data', function (req, res) {
 });
 
 /**
-* Delete one record based on id sent by http get request on /delete
+* Delete one record based on id sent by http delete request on /
 **/
-app.get('/delete', function(req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+app.delete('/', function(req, res) {
   console.log('Trying delete branch');
   console.log(req.query.id);  
   var o_id=new mongo.ObjectID(req.query.id);
@@ -38,11 +34,9 @@ app.get('/delete', function(req, res) {
 });
 
 /**
-* Saves new record in mongo db based on http get request on /save
+* Saves new record in mongo db based on http post request on /
 **/
 app.post('/', function(req,res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   console.log('Trying save branch');
   console.log(req.query.name);
   db.collection("contacts").insertOne(req.query, function (err, obj) {
@@ -52,15 +46,10 @@ app.post('/', function(req,res) {
   res.send("Saved");  
 });
 
-
-
-
 /**
-* Saves changes made to the record based on http get request on /edit
+* Saves changes made to the record based on http put request on /
 **/
-app.get('/edit', function(req,res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+app.put('/', function(req,res) {
   console.log('Trying edit branch');
   console.log(req.query.id);
   var o_id=new mongo.ObjectID(req.query.id);
