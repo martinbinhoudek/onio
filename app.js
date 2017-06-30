@@ -5,8 +5,11 @@ var mongo=require('mongodb');
 var MongoClient=mongo.MongoClient;
 var db;
 var url="mongodb://localhost:27017/mydb";
+var path=require('path');
 
 app.use(express.static('public'));
+app.set('view engine', 'pug');
+app.set("views", path.join(__dirname, "public"));
 
 /**
 * Loads all contact data based on http get request on /
@@ -16,6 +19,11 @@ app.get('/data', function (req, res) {
     if (err) throw err;
     res.send(result);
   });
+});
+
+app.get('/:name', function (req, res) {
+  console.log(req.params.name);
+  res.render(req.params.name);
 });
 
 /**
