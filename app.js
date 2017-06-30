@@ -12,7 +12,7 @@ app.use(express.static('public'));
 * Loads all contact data based on http get request on /
 **/
 app.get('/data', function (req, res) {
-  db.collection("contacts").find().toArray(function (err, result) {
+  db.collection("contacts").find().limit(100).toArray(function (err, result) {
     if (err) throw err;
     res.send(result);
   });
