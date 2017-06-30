@@ -6,10 +6,12 @@ var MongoClient=mongo.MongoClient;
 var db;
 var url="mongodb://localhost:27017/mydb";
 
+app.use(express.static('public'));
+
 /**
 * Loads all contact data based on http get request on /
 **/
-app.get('/', function (req, res) {
+app.get('/data', function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   db.collection("contacts").find().toArray(function (err, result) {
@@ -38,19 +40,6 @@ app.get('/delete', function(req, res) {
 /**
 * Saves new record in mongo db based on http get request on /save
 **/
-app.get('/save', function(req,res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  console.log('Trying save branch');
-  console.log(req.query.name);
-  db.collection("contacts").insertOne(req.query, function (err, obj) {
-	if (err) throw err;
-	console.log(req.query + " saved");
-  });
-  res.send("Saved");  
-});
-
-
 app.post('/', function(req,res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");

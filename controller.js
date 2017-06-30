@@ -1,13 +1,12 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http, $window) {
-  $http.get("http://ubuntu:8080/")
+  $http.get("http://ubuntu:8080/data")
   .then(function(response) {
       //$scope.myWelcome = response.data;
 	  $scope.contacts = response.data;
   });
   $scope.editId='';
-  $scope.editInsert='Insert a new record:';
-  
+  $scope.editInsert='Insert a new record:'; 
   
   /**
   * Sends http request to http server with id for deletion and then reloads the page
