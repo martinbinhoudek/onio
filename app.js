@@ -50,6 +50,22 @@ app.get('/save', function(req,res) {
   res.send("Saved");  
 });
 
+
+app.post('/', function(req,res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  console.log('Trying save branch');
+  console.log(req.query.name);
+  db.collection("contacts").insertOne(req.query, function (err, obj) {
+	if (err) throw err;
+	console.log(req.query + " saved");
+  });
+  res.send("Saved");  
+});
+
+
+
+
 /**
 * Saves changes made to the record based on http get request on /edit
 **/

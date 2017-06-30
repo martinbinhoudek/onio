@@ -31,8 +31,8 @@ app.controller('myCtrl', function($scope, $http, $window) {
   $scope.saveRecord=function() {
     if ($scope.editId=='') {
       $http({
-	  method: 'GET',
-      url: 'http://ubuntu:8080/save?name='+$scope.name+'&surname='+$scope.surname+'&email='+$scope.email+'&phone='+$scope.phone+'&address='+$scope.address
+	  method: 'POST',
+      url: 'http://ubuntu:8080/?name='+$scope.name+'&surname='+$scope.surname+'&email='+$scope.email+'&phone='+$scope.phone+'&address='+$scope.address
       });
     }
     else {
